@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope
+
+  xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+  xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+  xmlns:xsd3="http://www.w3.org/2001/XMLSchema"
+  xmlns:xsi3="http://www.w3.org/2001/XMLSchema-instance"
+>
+<SOAP-ENV:Body xmlns="urn:AxessInterface">
+<getTimVisionTrapsResponseResponse>
+<return>
+<device_rows>
+<item>
+<cpeid>100002-15119650700326449</cpeid>
+<device_type_name>LGTV</device_type_name>
+<fw_name>lg_fw</fw_name>
+<traps>
+<item>2019-07-28T13:56:27Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/28_15:56:27,,,,,MediaManagerSmartTV,,,,,,,PLAYING,,,,,,,,300,,,,,,,Porsche Super Cup: Germania,,http%3A%2F%2Flivetv0.cb.ticdn.it%2FContent%2Feurosport1_ss%2FLive%2FChannel(eurosport1).isml%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-28T13:56:27Z,
+</item>
+<item>2019-07-28T13:51:21Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/28_15:51:15,,,,,MediaManagerSmartTV,,,,,,,PLAYING,,,,,,,,300,,,,,,,Porsche Super Cup: Germania,,http%3A%2F%2Flivetv0.cb.ticdn.it%2FContent%2Feurosport1_ss%2FLive%2FChannel(eurosport1).isml%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-28T13:51:15Z,
+</item>
+<item>2019-07-28T13:46:20Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/28_15:46:15,,,,,MediaManagerSmartTV,,,,,,,PLAYING,,,,,,,,300,,,,,,,Porsche Super Cup: Germania,,http%3A%2F%2Flivetv0.cb.ticdn.it%2FContent%2Feurosport1_ss%2FLive%2FChannel(eurosport1).isml%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-28T13:46:15Z,
+</item>
+<item>2019-07-28T13:41:20Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/28_15:41:15,,,,,MediaManagerSmartTV,,,,,,,PLAYING,,,,,,,,300,,,,,,,Porsche Super Cup: Germania,,http%3A%2F%2Flivetv0.cb.ticdn.it%2FContent%2Feurosport1_ss%2FLive%2FChannel(eurosport1).isml%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-28T13:41:15Z,
+</item>
+<item>2019-07-28T13:36:21Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/28_15:36:15,,,,,MediaManagerSmartTV,,,,,,,PLAYING,,,,,,,,300,,,,,,,Porsche Super Cup: Germania,,http%3A%2F%2Flivetv0.cb.ticdn.it%2FContent%2Feurosport1_ss%2FLive%2FChannel(eurosport1).isml%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-28T13:36:15Z,
+</item>
+<item>2019-07-28T13:31:20Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/28_15:31:15,,,,,MediaManagerSmartTV,,,,,,,PLAYING,,,,,,,,300,,,,,,,Porsche Super Cup: Germania,,http%3A%2F%2Flivetv0.cb.ticdn.it%2FContent%2Feurosport1_ss%2FLive%2FChannel(eurosport1).isml%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-28T13:31:15Z,
+</item>
+<item>2019-07-28T13:26:21Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/28_15:26:15,,,,,MediaManagerSmartTV,,,,,,,PLAYING,,,,,,,,300,,,,,,,Porsche Super Cup: Germania,,http%3A%2F%2Flivetv0.cb.ticdn.it%2FContent%2Feurosport1_ss%2FLive%2FChannel(eurosport1).isml%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-28T13:26:15Z,
+</item>
+<item>2019-07-28T13:21:20Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/28_15:21:15,,,,,MediaManagerSmartTV,,,,,,,PLAYING,,,,,,,,300,,,,,,,Porsche Super Cup: Germania,,http%3A%2F%2Flivetv0.cb.ticdn.it%2FContent%2Feurosport1_ss%2FLive%2FChannel(eurosport1).isml%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-28T13:21:15Z,
+</item>
+<item>2019-07-28T13:16:20Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/28_15:16:15,,,,,MediaManagerSmartTV,,,,,,,PLAYING,,,,,,,,300,,,,,,,Porsche Super Cup: Germania,,http%3A%2F%2Flivetv0.cb.ticdn.it%2FContent%2Feurosport1_ss%2FLive%2FChannel(eurosport1).isml%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-28T13:16:15Z,
+</item>
+<item>2019-07-28T13:11:21Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/28_15:11:15,,,,,MediaManagerSmartTV,,,,,,,PLAYING,,,,,,,,300,,,,,,,Porsche Super Cup: Germania,,http%3A%2F%2Flivetv0.cb.ticdn.it%2FContent%2Feurosport1_ss%2FLive%2FChannel(eurosport1).isml%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-28T13:11:15Z,
+</item>
+<item>2019-07-28T13:06:20Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/28_15:06:15,,,,,MediaManagerSmartTV,,,,,,,PLAYING,,,,,,,,300,,,,,,,Porsche Super Cup: Germania,,http%3A%2F%2Flivetv0.cb.ticdn.it%2FContent%2Feurosport1_ss%2FLive%2FChannel(eurosport1).isml%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-28T13:06:15Z,
+</item>
+<item>2019-07-28T13:01:20Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/28_15:01:15,,,,,MediaManagerSmartTV,,,,,,,PLAYING,,,,,,,,300,,,,,,,Porsche Super Cup: Germania,,http%3A%2F%2Flivetv0.cb.ticdn.it%2FContent%2Feurosport1_ss%2FLive%2FChannel(eurosport1).isml%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-28T13:01:15Z,
+</item>
+<item>2019-07-28T12:56:20Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/28_14:56:15,,,,,MediaManagerSmartTV,,,,,,,PLAYING,,,,,,,,300,,,,,,,Porsche Super Cup: Germania,,http%3A%2F%2Flivetv0.cb.ticdn.it%2FContent%2Feurosport1_ss%2FLive%2FChannel(eurosport1).isml%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-28T12:56:15Z,
+</item>
+<item>2019-07-28T12:51:20Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/28_14:51:15,,,,,MediaManagerSmartTV,,,,,,,PLAYING,,,,,,,,300,,,,,,,Porsche Super Cup: Germania,,http%3A%2F%2Flivetv0.cb.ticdn.it%2FContent%2Feurosport1_ss%2FLive%2FChannel(eurosport1).isml%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-28T12:51:15Z,
+</item>
+<item>2019-07-28T12:46:20Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/28_14:46:15,,,,,MediaManagerSmartTV,,,,,,,PLAYING,,,,,,,,300,,,,,,,Porsche Super Cup: Germania,,http%3A%2F%2Flivetv0.cb.ticdn.it%2FContent%2Feurosport1_ss%2FLive%2FChannel(eurosport1).isml%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-28T12:46:15Z,
+</item>
+<item>2019-07-28T12:41:20Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/28_14:41:15,,,,,MediaManagerSmartTV,,,,,,,PLAYING,,,,,,,,300,,,,,,,Porsche Super Cup: Germania,,http%3A%2F%2Flivetv0.cb.ticdn.it%2FContent%2Feurosport1_ss%2FLive%2FChannel(eurosport1).isml%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-28T12:41:15Z,
+</item>
+<item>2019-07-28T12:36:19Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/28_14:36:15,,,,,MediaManagerSmartTV,,,,,,,PLAYING,,,,,,,,300,,,,,,,Porsche Super Cup: Germania,,http%3A%2F%2Flivetv0.cb.ticdn.it%2FContent%2Feurosport1_ss%2FLive%2FChannel(eurosport1).isml%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-28T12:36:15Z,
+</item>
+<item>2019-07-28T12:31:19Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/28_14:31:15,,,,,MediaManagerSmartTV,,,,,,,PLAYING,,,,,,,,300,,,,,,,Porsche Super Cup: Germania,,http%3A%2F%2Flivetv0.cb.ticdn.it%2FContent%2Feurosport1_ss%2FLive%2FChannel(eurosport1).isml%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-28T12:31:15Z,
+</item>
+<item>2019-07-28T12:26:19Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/28_14:26:15,,,,,MediaManagerSmartTV,,,,,,,PLAYING,,,,,,,,300,,,,,,,Porsche Super Cup: Germania,,http%3A%2F%2Flivetv0.cb.ticdn.it%2FContent%2Feurosport1_ss%2FLive%2FChannel(eurosport1).isml%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-28T12:26:15Z,
+</item>
+<item>2019-07-28T12:21:19Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/28_14:21:15,,,,,MediaManagerSmartTV,,,,,,,PLAYING,,,,,,,,300,,,,,,,Porsche Super Cup: Germania,,http%3A%2F%2Flivetv0.cb.ticdn.it%2FContent%2Feurosport1_ss%2FLive%2FChannel(eurosport1).isml%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-28T12:21:15Z,
+</item>
+<item>2019-07-28T12:16:19Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/28_14:16:15,,,,,MediaManagerSmartTV,,,,,,,PLAYING,,,,,,,,300,,,,,,,Porsche Super Cup: Germania,,http%3A%2F%2Flivetv0.cb.ticdn.it%2FContent%2Feurosport1_ss%2FLive%2FChannel(eurosport1).isml%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-28T12:16:15Z,
+</item>
+<item>2019-07-28T12:11:19Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/28_14:11:15,,,,,MediaManagerSmartTV,,,,,,,PLAYING,,,,,,,,300,,,,,,,Porsche Super Cup: Germania,,http%3A%2F%2Flivetv0.cb.ticdn.it%2FContent%2Feurosport1_ss%2FLive%2FChannel(eurosport1).isml%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-28T12:11:15Z,
+</item>
+<item>2019-07-28T12:06:19Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/28_14:06:14,,,,,MediaManagerSmartTV,,,,,,,PLAYING,,,,,,,,300,,,,,,,Porsche Super Cup: Germania,,http%3A%2F%2Flivetv0.cb.ticdn.it%2FContent%2Feurosport1_ss%2FLive%2FChannel(eurosport1).isml%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-28T12:06:14Z,
+</item>
+<item>2019-07-28T12:01:19Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/28_14:01:14,,,,,MediaManagerSmartTV,,,,,,,PLAYING,,,,,,,,300,,,,,,,Porsche Super Cup: Germania,,http%3A%2F%2Flivetv0.cb.ticdn.it%2FContent%2Feurosport1_ss%2FLive%2FChannel(eurosport1).isml%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-28T12:01:14Z,
+</item>
+<item>2019-07-28T11:56:19Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/28_13:56:14,,,,,MediaManagerSmartTV,,,,,,,PLAYING,,,,,,,,300,,,,,,,Porsche Super Cup: Germania,,http%3A%2F%2Flivetv0.cb.ticdn.it%2FContent%2Feurosport1_ss%2FLive%2FChannel(eurosport1).isml%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-28T11:56:14Z,
+</item>
+<item>2019-07-28T11:51:19Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/28_13:51:14,,,,,MediaManagerSmartTV,,,,,,,PLAYING,,,,,,,,300,,,,,,,Porsche Super Cup: Germania,,http%3A%2F%2Flivetv0.cb.ticdn.it%2FContent%2Feurosport1_ss%2FLive%2FChannel(eurosport1).isml%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-28T11:51:14Z,
+</item>
+<item>2019-07-28T11:46:19Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/28_13:46:14,,,,,MediaManagerSmartTV,,,,,,,PLAYING,,,,,,,,300,,,,,,,Porsche Super Cup: Germania,,http%3A%2F%2Flivetv0.cb.ticdn.it%2FContent%2Feurosport1_ss%2FLive%2FChannel(eurosport1).isml%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-28T11:46:14Z,
+</item>
+<item>2019-07-28T11:41:19Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/28_13:41:14,,,,,MediaManagerSmartTV,,,,,,,PLAYING,,,,,,,,300,,,,,,,Porsche Super Cup: Germania,,http%3A%2F%2Flivetv0.cb.ticdn.it%2FContent%2Feurosport1_ss%2FLive%2FChannel(eurosport1).isml%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-28T11:41:14Z,
+</item>
+<item>2019-07-28T11:36:19Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/28_13:36:14,,,,,MediaManagerSmartTV,,,,,,,PLAYING,,,,,,,,300,,,,,,,Porsche Super Cup: Germania,,http%3A%2F%2Flivetv0.cb.ticdn.it%2FContent%2Feurosport1_ss%2FLive%2FChannel(eurosport1).isml%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-28T11:36:14Z,
+</item>
+<item>2019-07-28T11:31:19Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/28_13:31:14,,,,,MediaManagerSmartTV,,,,,,,PLAYING,,,,,,,,300,,,,,,,Porsche Super Cup: Germania,,http%3A%2F%2Flivetv0.cb.ticdn.it%2FContent%2Feurosport1_ss%2FLive%2FChannel(eurosport1).isml%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-28T11:31:14Z,
+</item>
+<item>2019-07-28T11:26:19Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/28_13:26:14,,,,,MediaManagerSmartTV,,,,,,,PLAYING,,,,,,,,300,,,,,,,Porsche Super Cup: Germania,,http%3A%2F%2Flivetv0.cb.ticdn.it%2FContent%2Feurosport1_ss%2FLive%2FChannel(eurosport1).isml%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-28T11:26:14Z,
+</item>
+<item>2019-07-28T11:21:19Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/28_13:21:14,,,,,MediaManagerSmartTV,,,,,,,PLAYING,,,,,,,,300,,,,,,,Porsche Super Cup: Germania,,http%3A%2F%2Flivetv0.cb.ticdn.it%2FContent%2Feurosport1_ss%2FLive%2FChannel(eurosport1).isml%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-28T11:21:14Z,
+</item>
+<item>2019-07-28T11:16:19Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/28_13:16:14,,,,,MediaManagerSmartTV,,,,,,,PLAYING,,,,,,,,300,,,,,,,Porsche Super Cup: Germania,,http%3A%2F%2Flivetv0.cb.ticdn.it%2FContent%2Feurosport1_ss%2FLive%2FChannel(eurosport1).isml%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-28T11:16:14Z,
+</item>
+<item>2019-07-28T11:11:19Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/28_13:11:14,,,,,MediaManagerSmartTV,,,,,,,PLAYING,,,,,,,,300,,,,,,,Porsche Super Cup: Germania,,http%3A%2F%2Flivetv0.cb.ticdn.it%2FContent%2Feurosport1_ss%2FLive%2FChannel(eurosport1).isml%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-28T11:11:14Z,
+</item>
+<item>2019-07-28T11:06:19Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/28_13:06:14,,,,,MediaManagerSmartTV,,,,,,,PLAYING,,,,,,,,300,,,,,,,Porsche Super Cup: Germania,,http%3A%2F%2Flivetv0.cb.ticdn.it%2FContent%2Feurosport1_ss%2FLive%2FChannel(eurosport1).isml%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-28T11:06:14Z,
+</item>
+<item>2019-07-28T11:01:19Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/28_13:01:14,,,,,MediaManagerSmartTV,,,,,,,PLAYING,,,,,,,,300,,,,,,,Porsche Super Cup: Germania,,http%3A%2F%2Flivetv0.cb.ticdn.it%2FContent%2Feurosport1_ss%2FLive%2FChannel(eurosport1).isml%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-28T11:01:14Z,
+</item>
+<item>2019-07-28T10:56:19Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/28_12:56:14,,,,,MediaManagerSmartTV,,,,,,,PLAYING,,,,,,,,300,,,,,,,Porsche Super Cup: Germania,,http%3A%2F%2Flivetv0.cb.ticdn.it%2FContent%2Feurosport1_ss%2FLive%2FChannel(eurosport1).isml%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-28T10:56:14Z,
+</item>
+<item>2019-07-28T10:51:19Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/28_12:51:14,,,,,MediaManagerSmartTV,,,,,,,PLAYING,,,,,,,,300,,,,,,,Porsche Super Cup: Germania,,http%3A%2F%2Flivetv0.cb.ticdn.it%2FContent%2Feurosport1_ss%2FLive%2FChannel(eurosport1).isml%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-28T10:51:14Z,
+</item>
+<item>2019-07-28T10:46:19Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/28_12:46:14,,,,,MediaManagerSmartTV,,,,,,,PLAYING,,,,,,,,300,,,,,,,Porsche Super Cup: Germania,,http%3A%2F%2Flivetv0.cb.ticdn.it%2FContent%2Feurosport1_ss%2FLive%2FChannel(eurosport1).isml%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-28T10:46:14Z,
+</item>
+<item>2019-07-28T10:41:19Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/28_12:41:14,,,,,MediaManagerSmartTV,,,,,,,PLAYING,,,,,,,,300,,,,,,,Porsche Super Cup: Germania,,http%3A%2F%2Flivetv0.cb.ticdn.it%2FContent%2Feurosport1_ss%2FLive%2FChannel(eurosport1).isml%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-28T10:41:14Z,
+</item>
+<item>2019-07-28T10:36:19Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/28_12:36:14,,,,,MediaManagerSmartTV,,,,,,,PLAYING,,,,,,,,300,,,,,,,Porsche Super Cup: Germania,,http%3A%2F%2Flivetv0.cb.ticdn.it%2FContent%2Feurosport1_ss%2FLive%2FChannel(eurosport1).isml%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-28T10:36:14Z,
+</item>
+<item>2019-07-28T10:31:19Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/28_12:31:14,,,,,MediaManagerSmartTV,,,,,,,PLAYING,,,,,,,,300,,,,,,,Porsche Super Cup: Germania,,http%3A%2F%2Flivetv0.cb.ticdn.it%2FContent%2Feurosport1_ss%2FLive%2FChannel(eurosport1).isml%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-28T10:31:14Z,
+</item>
+<item>2019-07-28T10:26:19Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/28_12:26:14,,,,,MediaManagerSmartTV,,,,,,,PLAYING,,,,,,,,300,,,,,,,Porsche Super Cup: Germania,,http%3A%2F%2Flivetv0.cb.ticdn.it%2FContent%2Feurosport1_ss%2FLive%2FChannel(eurosport1).isml%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-28T10:26:14Z,
+</item>
+<item>2019-07-28T10:21:18Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/28_12:21:14,,,,,MediaManagerSmartTV,,,,,,,PLAYING,,,,,,,,300,,,,,,,Porsche Super Cup: Germania,,http%3A%2F%2Flivetv0.cb.ticdn.it%2FContent%2Feurosport1_ss%2FLive%2FChannel(eurosport1).isml%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-28T10:21:14Z,
+</item>
+<item>2019-07-28T10:16:19Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/28_12:16:14,,,,,MediaManagerSmartTV,,,,,,,PLAYING,,,,,,,,300,,,,,,,Porsche Super Cup: Germania,,http%3A%2F%2Flivetv0.cb.ticdn.it%2FContent%2Feurosport1_ss%2FLive%2FChannel(eurosport1).isml%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-28T10:16:14Z,
+</item>
+<item>2019-07-28T10:11:19Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/28_12:11:14,,,,,MediaManagerSmartTV,,,,,,,PLAYING,,,,,,,,300,,,,,,,Porsche Super Cup: Germania,,http%3A%2F%2Flivetv0.cb.ticdn.it%2FContent%2Feurosport1_ss%2FLive%2FChannel(eurosport1).isml%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-28T10:11:14Z,
+</item>
+<item>2019-07-28T10:06:18Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/28_12:06:14,,,,,MediaManagerSmartTV,,,,,,,PLAYING,,,,,,,,300,,,,,,,Porsche Super Cup: Germania,,http%3A%2F%2Flivetv0.cb.ticdn.it%2FContent%2Feurosport1_ss%2FLive%2FChannel(eurosport1).isml%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-28T10:06:14Z,
+</item>
+<item>2019-07-28T10:01:18Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/28_12:01:14,,,,,MediaManagerSmartTV,,,,,,,PLAYING,,,,,,,,300,,,,,,,Porsche Super Cup: Germania,,http%3A%2F%2Flivetv0.cb.ticdn.it%2FContent%2Feurosport1_ss%2FLive%2FChannel(eurosport1).isml%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-28T10:01:14Z,
+</item>
+<item>2019-07-28T09:56:17Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/28_11:56:14,,,,,MediaManagerSmartTV,,,,,,,TIME_TO_FIRST_PICTURE,,,,,,,,,,,,8.275,,,Porsche Super Cup: Germania,,http%3A%2F%2Flivetv0.cb.ticdn.it%2FContent%2Feurosport1_ss%2FLive%2FChannel(eurosport1).isml%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-28T09:56:14Z,
+</item>
+<item>2019-07-28T09:56:17Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/28_11:56:05,,,,,MediaManagerSmartTV,,,,,,,PLAY,,446000%2C746000%2C1096000%2C1796000%2C2896000%2C4096000%2C5596000%2C7096000,,,7000,,,,,,SS,,,,Porsche Super Cup: Germania,,http%3A%2F%2Flivetv0.cb.ticdn.it%2FContent%2Feurosport1_ss%2FLive%2FChannel(eurosport1).isml%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-28T09:56:05Z,
+</item>
+<item>2019-07-28T09:55:48Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/28_11:55:17,,,,,,,,,,,,APPLICATION_BOOT,,,,,,,,,,,,,,,,,,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-28T09:55:17Z,
+</item>
+<item>2019-07-27T11:13:19Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/27_13:12:47,,,,,,,,,,,,APPLICATION_BOOT,,,,,,,,,,,,,,,,,,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-27T11:12:47Z,
+</item>
+<item>2019-07-27T05:54:54Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/27_07:54:53,,,,,MediaManagerSmartTV,,,,,,,STOP,,,,,,,,,,,,,,,Tour de France: 19a tappa,,http%3A%2F%2Flivetv0.cb.ticdn.it%2FContent%2Feurosport2_ss%2FLive%2FChannel(eurosport2).isml%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-27T05:54:53Z,
+</item>
+<item>2019-07-27T05:54:54Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/27_07:54:46,,,,,MediaManagerSmartTV,,,,,,,TIME_TO_FIRST_PICTURE,,,,,,,,,,,,3.607,,,Tour de France: 19a tappa,,http%3A%2F%2Flivetv0.cb.ticdn.it%2FContent%2Feurosport2_ss%2FLive%2FChannel(eurosport2).isml%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-27T05:54:46Z,
+</item>
+<item>2019-07-27T05:54:54Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/27_07:54:42,,,,,MediaManagerSmartTV,,,,,,,PLAY,,446000%2C746000%2C1096000%2C1796000%2C2896000%2C4096000%2C5596000%2C7096000,,,7000,,,,,,SS,,,,Tour de France: 19a tappa,,http%3A%2F%2Flivetv0.cb.ticdn.it%2FContent%2Feurosport2_ss%2FLive%2FChannel(eurosport2).isml%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-27T05:54:42Z,
+</item>
+<item>2019-07-27T05:54:38Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/27_07:54:37,,,,,MediaManagerSmartTV,,,,,,,STOP,,,,,,,,,,,,,,,Scherma:Prova a squadre,,http%3A%2F%2Flivetv0.cb.ticdn.it%2FContent%2Feurosport1_ss%2FLive%2FChannel(eurosport1).isml%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-27T05:54:37Z,
+</item>
+<item>2019-07-27T05:54:38Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/27_07:54:29,,,,,MediaManagerSmartTV,,,,,,,PLAY,,446000%2C746000%2C1096000%2C1796000%2C2896000%2C4096000%2C5596000%2C7096000,,,7000,,,,,,SS,,,,Scherma:Prova a squadre,,http%3A%2F%2Flivetv0.cb.ticdn.it%2FContent%2Feurosport1_ss%2FLive%2FChannel(eurosport1).isml%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-27T05:54:29Z,
+</item>
+<item>2019-07-27T05:54:38Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/27_07:54:33,,,,,MediaManagerSmartTV,,,,,,,TIME_TO_FIRST_PICTURE,,,,,,,,,,,,3.703,,,Scherma:Prova a squadre,,http%3A%2F%2Flivetv0.cb.ticdn.it%2FContent%2Feurosport1_ss%2FLive%2FChannel(eurosport1).isml%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-27T05:54:33Z,
+</item>
+<item>2019-07-27T05:54:13Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/27_07:54:03,,,,,MediaManagerSmartTV,,,,,,,PLAY,,842000%2C1192000%2C1692000%2C2192000%2C2692000,,,2500,,,,,,SS,,6416,,Fratelli nemici,,http%3A%2F%2Fvodabr.cb.ticdn.it%2Fvideoteca2%2FV3%2FSingleTitle%2F2019%2F07%2F60003189%2FSS%2F20095586%2F20095586_SD.ism%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-27T05:54:03Z,
+</item>
+<item>2019-07-27T05:54:13Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/27_07:54:08,,,,,MediaManagerSmartTV,,,,,,,TIME_TO_FIRST_PICTURE,,,,,,,,,,,,5.468,,,Fratelli nemici,,http%3A%2F%2Fvodabr.cb.ticdn.it%2Fvideoteca2%2FV3%2FSingleTitle%2F2019%2F07%2F60003189%2FSS%2F20095586%2F20095586_SD.ism%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-27T05:54:08Z,
+</item>
+<item>2019-07-27T05:54:13Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/27_07:54:12,,,,,MediaManagerSmartTV,,,,,,,STOP,,,,,,,,,,,,,,,Fratelli nemici,,http%3A%2F%2Fvodabr.cb.ticdn.it%2Fvideoteca2%2FV3%2FSingleTitle%2F2019%2F07%2F60003189%2FSS%2F20095586%2F20095586_SD.ism%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-27T05:54:12Z,
+</item>
+<item>2019-07-27T05:52:46Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/27_07:52:45,,,,,MediaManagerSmartTV,,,,,,,STOP,,,,,,,,,,,,,,,Sesta puntata | Finale,,http%3A%2F%2Fvodabr.cb.ticdn.it%2Fvideoteca2%2FV3%2FSingleTitle%2F2019%2F07%2F60003565%2FSS%2F20095358%2F20095358_SD.ism%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-27T05:52:45Z,
+</item>
+<item>2019-07-27T05:52:46Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/27_07:52:35,,,,,MediaManagerSmartTV,,,,,,,PLAY,,842000%2C1192000%2C1692000%2C2192000%2C2692000,,,2500,,,,,,SS,,10884,,Sesta puntata | Finale,,http%3A%2F%2Fvodabr.cb.ticdn.it%2Fvideoteca2%2FV3%2FSingleTitle%2F2019%2F07%2F60003565%2FSS%2F20095358%2F20095358_SD.ism%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-27T05:52:35Z,
+</item>
+<item>2019-07-27T05:52:46Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/27_07:52:42,,,,,MediaManagerSmartTV,,,,,,,TIME_TO_FIRST_PICTURE,,,,,,,,,,,,6.834,,,Sesta puntata | Finale,,http%3A%2F%2Fvodabr.cb.ticdn.it%2Fvideoteca2%2FV3%2FSingleTitle%2F2019%2F07%2F60003565%2FSS%2F20095358%2F20095358_SD.ism%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-27T05:52:42Z,
+</item>
+<item>2019-07-27T05:51:48Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/27_07:51:47,,,,,MediaManagerSmartTV,,,,,,,STOP,,,,,,,,,,,,,,,Civiltà perduta,,http%3A%2F%2Fvodabr.cb.ticdn.it%2Fvideoteca2%2FV3%2FFilm%2F2018%2F11%2F50733496%2FSS%2F20095054%2F20095054_HD.ism%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-27T05:51:47Z,
+</item>
+<item>2019-07-27T05:51:40Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/27_07:51:17,,,,,MediaManagerSmartTV,,,,,,,TIME_TO_FIRST_PICTURE,,,,,,,,,,,,6.162,,,Civiltà perduta,,http%3A%2F%2Fvodabr.cb.ticdn.it%2Fvideoteca2%2FV3%2FFilm%2F2018%2F11%2F50733496%2FSS%2F20095054%2F20095054_HD.ism%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-27T05:51:17Z,
+</item>
+<item>2019-07-27T05:51:40Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/27_07:51:11,,,,,MediaManagerSmartTV,,,,,,,PLAY,,1192000%2C1692000%2C2192000%2C2692000%2C3192000%2C3992000%2C4892000%2C5892000%2C7192000,,,7000,,,,,,SS,,8144,,Civiltà perduta,,http%3A%2F%2Fvodabr.cb.ticdn.it%2Fvideoteca2%2FV3%2FFilm%2F2018%2F11%2F50733496%2FSS%2F20095054%2F20095054_HD.ism%2FManifest,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-27T05:51:11Z,
+</item>
+<item>2019-07-27T05:49:39Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/26_14:34:57,,,,,undefined,TelemetryAgent,undefined,https%3A%2F%2Fregman-cb.interbusiness.it%3A10601%2FlogEvent,NO_CONNECTIVITY,,,HTTP,,,,,,,,,,,,,,,,,,callError,05.30.45,,ETHERNET,10.15.4,,2019-07-26T12:34:57Z,
+</item>
+<item>2019-07-27T05:49:39Z,15119650700326449,WebOS_TV,lgTv,WebOS,95.246.9.128,2019/07/27_07:49:08,,,,,,,,,,,,APPLICATION_BOOT,,,,,,,,,,,,,,,,,,userInput,05.30.45,,ETHERNET,10.15.4,,2019-07-27T05:49:08Z,
+</item>
+</traps>
+<traps_fields>creation_time,deviceId,deviceType,mode,modelName,originIPAddress,trap.orig_timestamp,trap.bitRateKbps,trap.body.averageBitrate,trap.body.avgSSKbps,trap.body.bufferingDuration,trap.body.callerClass,trap.body.callErrorCode,trap.body.callErrorMessage,trap.body.callErrorType,trap.body.callUrl,trap.body.errorDesc,trap.body.errorReason,trap.body.eventName,trap.body.fwUpgradeVersion,trap.body.levelBitrates,trap.body.lineSpeedKbps,trap.body.loUpgradeVersion,trap.body.maxSSChunkKbps,trap.body.maxSSKbps,trap.body.minSSKbps,trap.body.playingInterval,trap.body.raUpgradeVersion,trap.body.resType,trap.body.streamingType,trap.body.timeValue,trap.body.videoDuration,trap.body.videoPosition,trap.body.videoTitle,trap.body.videoType,trap.body.videoUrl,trap.eventType,trap.fwVersion,trap.loVersion,trap.networkType,trap.raVersion,trap.SNR,trap.timestamp,provider</traps_fields>
+<vendor>WebOS_TV</vendor>
+</item>
+</device_rows>
+<result>
+<errorCode>000</errorCode>
+<errorDesc>Nessun errore</errorDesc>
+</result>
+</return>
+</getTimVisionTrapsResponseResponse>
+</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
