@@ -35,23 +35,32 @@ import (
 	"net/http"
 )
 
+var BuildVersion string
+
 // Configuration contiene gli elemnti per configurare il tool.
 type Configuration struct {
 	Token string `json:"token"`
 }
 
 var tgu = flag.String("t", "", "TGU da controllare")
-var configfile = flag.String("c", "conf.json", "File di configurazione")
-var vault = flag.String("s", "127.0.0.1:9999", "Server tokenizzatore")
 
-var configuration Configuration
+// var configfile = flag.String("c", "conf.json", "File di configurazione")
+var vault = flag.String("s", "127.0.0.1:9999", "Server tokenizzatore e porta")
+
+// var configuration Configuration
 
 func main() {
 
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
+	version := flag.Bool("v", false, "Versione dell'APP")
 	flag.Parse()
+
+	if *version {
+		fmt.Printf("Ver%s\n", BuildVersion)
+		os.Exit(0)
+	}
 
 	lenghthTGU := len(*tgu)
 

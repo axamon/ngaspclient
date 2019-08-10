@@ -39,6 +39,8 @@ const (
 	passphrase = "vvkidtbcjujhtglivdjtlkgtetbtdejlivgukincfhdt"
 )
 
+var Dinamicsimmetricpass string
+
 func verificatoken(ctx context.Context, vault string) (err error) {
 
 	// err = gonfig.GetConf(configfile, &configuration)
@@ -46,6 +48,20 @@ func verificatoken(ctx context.Context, vault string) (err error) {
 	// 	log.Printf("ERROR Problema con il file di configurazione conf.json: %s\n", err.Error())
 	// 	return
 	// }
+
+	dinamicsimmetricpassURL := "http://" + vault + "/dinamicsimmetricpass"
+
+	resp1, err := http.Get(dinamicsimmetricpassURL)
+	if err != nil {
+		log.Fatalf("ERROR Impossibile contattare il Vault: %s\n", err.Error())
+	}
+
+	bodyBytes1, err := ioutil.ReadAll(resp1.Body)
+	if err != nil {
+		log.Fatalf("ERROR Impossibile leggere risposta del Vault: %s\n", err.Error())
+	}
+
+	Dinamicsimmetricpass = string(bodyBytes1)
 
 	vaultURL := "http://" + vault + "/token"
 
@@ -75,7 +91,7 @@ func verificatoken(ctx context.Context, vault string) (err error) {
 	// password = credenziali[2]
 
 	oggi := time.Now().Unix()
-	
+
 	if oggi > int64(scadenza) {
 		log.Println("Token scaduto. Impossibile proseguire.")
 		os.Exit(1)
@@ -97,7 +113,8 @@ func createHash(key string) string {
 }
 
 func decrypt(data []byte) []byte {
-	key := []byte(createHash(passphrase))
+	// key := []byte(createHash(passphrase)) Dinamicsimmetricpass
+	key := []byte(createHash(Dinamicsimmetricpass))
 	block, err := aes.NewCipher(key)
 	if err != nil {
 		log.Println(err.Error())
