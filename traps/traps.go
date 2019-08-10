@@ -51,6 +51,7 @@ type XMLResponse struct {
 	} `xml:"Body"`
 }
 
+// Output è il risultato mostrato a video
 type Output struct {
 	CpeID         string
 	Mode          string
@@ -61,9 +62,9 @@ type Output struct {
 	QoV           string
 	NetworkType   string
 	IsAlice       string
-	Buffering     string
+	Buffering     int
 	LongBuffering int
-	PlayerError   string
+	PlayerError   int
 	StreamingType string
 	TGU           string
 	FQDN          string
@@ -180,10 +181,12 @@ func Parse(ctx context.Context, response []byte) {
 			out.EndTS = endTS.In(location).Format("2006-01-02T15:04:05-0700")
 		}
 
-		if trapSlice[18] == "buffering" {
-			out.Buffering = "Sì"
-		} else {
-			out.Buffering = "No"
+		switch trapSlice[18] {
+		case "buffering":
+			out.Buffering++
+
+		case "playerError":
+			out.PlayerError++
 		}
 
 		if trapSlice[10] != "" {
@@ -200,7 +203,15 @@ func Parse(ctx context.Context, response []byte) {
 		fmt.Println(out)
 	}
 
-	fmt.Println(len(fruizioni), fruizioni)
+	fmt.Println(len(fruizioni))
+
+	for n, fruizione := range fruizioni {
+		fmt.Println(n, fruizione)
+	}
 
 	return
 }
+
+// 0633429477
+// 0633652113
+// 0633429599
