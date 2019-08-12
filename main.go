@@ -35,6 +35,9 @@ import (
 	"net/http"
 )
 
+// BuildVersion è la versione attuale del tool 
+// valorizzato tramite:
+// go  build -ldflags "-X main.BuildVersion=2"
 var BuildVersion string
 
 // Configuration contiene gli elemnti per configurare il tool.

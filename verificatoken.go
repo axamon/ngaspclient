@@ -39,6 +39,7 @@ const (
 	passphrase = "vvkidtbcjujhtglivdjtlkgtetbtdejlivgukincfhdt"
 )
 
+// Dinamicsimmetricpass password dinamica negoziata col tokenizzatore
 var Dinamicsimmetricpass string
 
 func verificatoken(ctx context.Context, vault string) (err error) {
