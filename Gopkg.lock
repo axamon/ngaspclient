@@ -2,14 +2,6 @@
 
 
 [[projects]]
-  digest = "1:3a22c7c99aec391620f367654e97705ce9c66503ce2bac83f3f883210ec81c8f"
-  name = "github.com/panamafrancis/tizzy"
-  packages = ["."]
-  pruneopts = "UT"
-  revision = "53626bd95fc63da7904fe3e6b4a9cc97c25f75cc"
-  version = "v0.4"
-
-[[projects]]
   digest = "1:e60f2f1cd2e8dfdea48c2440c303d103266e754ab1d8b75796a4e4caddb7a68c"
   name = "github.com/tealeg/xlsx"
   packages = ["."]
@@ -20,9 +12,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  input-imports = [
-    "github.com/panamafrancis/tizzy",
-    "github.com/tealeg/xlsx",
-  ]
+  input-imports = ["github.com/tealeg/xlsx"]
   solver-name = "gps-cdcl"
   solver-version = 1
