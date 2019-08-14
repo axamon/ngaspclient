@@ -29,11 +29,14 @@ import (
 	"time"
 
 	"context"
+	"encoding/base64"
 	"encoding/xml"
 	"fmt"
 
 	"strings"
 )
+
+const rome = "VFppZjIAAAAAAAAAAAAAAAAAAAAAAAAHAAAABwAAAAAAAACsAAAABwAAAA2AAAAAmzj4cJvVzOCcxcvwnbcAYJ6J/nCfoBzgoGCl8KF+rWCiXDdwo0waYMhsNfDM50sQzakXkM6CdODOokMQz5I0EM/jxuDQbl6Q0XIWENJM0vDTPjGQ1EnSENUd93DWKZfw1uuAkNgJlhD5M7Xw+dnE4Psc0nD7ubTw/Py0cP2ZlvD+5dDw/4KzcADFsvABYpVwApxacANCd3AEhXbwBSuT8AZuk3AHC3XwCEU68AjrV/AKLldwCss58AwOOXAMqxvwDeTg8A6K/fAPzf1wEHQacBGt33ASU/xwEs6X8BNNRBAUM/qQFSPrkBYT3JAXA82QF/O+kBjjr5AZ06CQGsORkBu8vRAcrK4QHZyfEB6MkBAffIEQIGxyECFcYxAiTFQQIzxFECQsNhAlHCcQJgwYECcFQ5An9TSQKOUlkCnVFpAqxQeQK7T4kCyk6ZAtlNqQLoTLkC90vJAwZK2QMV3ZEDJytBAzPbsQNFKWEDUdnRA2MngQNv1/EDgblJA43WEQOft2kDq9QxA721iQPKZfkD27OpA+hkGQP5sckEBmI5BBhDkQQkYFkENkGxBEJeeQRUP9EEYFyZBHI98QR+7mEEkDwRBJzsgQSuOjEEuuqhBMzL+QTY6MEE6soZBPbm4QUIyDkFFXipBSbGWQUzdskFRMR5BVF06QViwpkFb3MJBYFUYQWNcSkFn1KBBatvSQW9UKEFygERBdtOwQXn/zEF+UzhBgX9UQYX3qkGI/txBjXcyQZB+ZEGU9rpBmCLWQZx2QkGfol5Bo/XKQach5kGrdVJBrqFuQbMZxEG2IPZBuplMQb2gfkHCGNRBxUTwQcmYXEHMxHhB0RfkQdREAEHYvFZB28OIQeA73kHjQxBB57tmQerCmEHvOu5B8mcKQfa6dkH55pJB/jn+QAgECAQIBAgECAQIBAwQBAwQBAwECBAMEAwQDBAIEAwQDBAMEAwQDBAMEAwQDBAMEAwQDBAMEAwIFBgUGBQYFBgUGBQYFBgUGBQYFBgUGBQYFBgUGBQYFBgUGBQYFBgUGBQYFBgUGBQYFBgUGBQYFBgUGBQYFBgUGBQYFBgUGBQYFBgUGBQYFBgUGBQYFBgUGBQYFBgUGBQYFBgUGBQYFBgUGBQYFBgUGBQYFBgAAC7QAAAAAHCABBAAADhAACQAADhAACQAAHCABBAAAHCABBAAADhAACUxNVABDRVNUAENFVAAAAAABAQEBAAAAAAABAQpDRVQtMUNFU1QsTTMuNS4wLE0xMC41LjAvMwo="
 
 // XMLResponse è la trasposizione in struct della struttura XML di risposta.
 type XMLResponse struct {
@@ -261,9 +264,14 @@ func Parse(ctx context.Context, response []byte, tgu string) {
 
 				// Trova la location per trattare correttamente il passaggio
 				// del fuso orario da UTC e per gestire l'ora solare/legale.
-				location, err := time.LoadLocation("Europe/Rome")
+				romebytes, err := base64.StdEncoding.DecodeString(rome)
 				if err != nil {
-					panic(err)
+					log.Println("impossibile decodificare roma")
+				}
+				// location, err := tizzy.LoadLocationValue("Europe/Rome")
+				location, err := time.LoadLocationFromTZData("Europe/Rome", romebytes)
+				if err != nil {
+					log.Println("errore con la location per i fusiorari")
 				}
 
 				// Elabora Inzio e fine fruizione
