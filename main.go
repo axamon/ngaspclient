@@ -35,7 +35,7 @@ import (
 	"net/http"
 )
 
-// BuildVersion è la versione attuale del tool 
+// BuildVersion è la versione attuale del tool
 // valorizzato tramite:
 // go  build -ldflags "-X main.BuildVersion=2"
 var BuildVersion string
@@ -106,7 +106,7 @@ func main() {
 	client := &http.Client{Transport: transCfg}
 	url := "https://ngasp-ag.tim.it/live/nbi_interfaces/soap/document_literal"
 
-	fmt.Println(url)
+	// fmt.Println(url)
 
 	body := []byte(busta2)
 
@@ -131,8 +131,12 @@ func main() {
 		log.Printf("ERROR Impossibile leggere body reqest: %s\n", err.Error())
 	}
 
+	err = ioutil.WriteFile("test.xml", responsBody, 0666)
+	if err != nil {
+		log.Fatal(err)
+	}
 	// fmt.Println(string(responsBody)) // Debug
 
-	traps.Parse(ctx, responsBody)
+	traps.Parse(ctx, responsBody, *tgu)
 
 }
