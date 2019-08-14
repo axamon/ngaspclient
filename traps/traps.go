@@ -79,6 +79,7 @@ type XMLResponse struct {
 type Output struct {
 	CpeID         string
 	Mode          string
+	ModelName     string
 	StartTS       string
 	EndTS         string
 	ChiusoDa      string
@@ -170,7 +171,7 @@ func Parse(ctx context.Context, response []byte, tgu string) {
 	var fruizioni = make(map[string]Output)
 
 	var archivio []string
-	var indiceVideoTitle, indiceEventName, indiceNetworkType, indiceEventType, indiceProvider, indiceVideoURL int
+	var indiceVideoTitle, indiceEventName, indiceNetworkType, indiceEventType, indiceProvider, indiceVideoURL, indiceStreamingType int
 	var fieldsSlice []string
 
 	scanner := bufio.NewScanner(bytes.NewReader(response))
@@ -207,6 +208,8 @@ func Parse(ctx context.Context, response []byte, tgu string) {
 			indiceEventType = trovaIndice(fieldsSlice, "trap.eventType")
 			indiceProvider = trovaIndice(fieldsSlice, "provider")
 			indiceVideoURL = trovaIndice(fieldsSlice, "trap.body.videoUrl")
+			indiceStreamingType = trovaIndice(fieldsSlice, "trap.body.streamingType")
+
 			// aggiungere altri se servono
 
 			// Tratto le traps
@@ -241,10 +244,12 @@ func Parse(ctx context.Context, response []byte, tgu string) {
 
 				out.CpeID = trapSlice[1]
 				out.Mode = trapSlice[3]
+				out.ModelName = trapSlice[4]
 				out.VideoTitle = trapSlice[indiceVideoTitle]
 				out.NetworkType = trapSlice[indiceNetworkType]
 				out.IsAlice = trapSlice[indiceProvider]
 				out.TGU = tgu
+				out.StreamingType = trapSlice[indiceStreamingType]
 
 				// elabora il campo url
 				u, err := url.Parse(trapSlice[indiceVideoURL])

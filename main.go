@@ -26,6 +26,8 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"regexp"
+	"strings"
 
 	"github.com/axamon/ngasp/traps"
 
@@ -46,8 +48,9 @@ type Configuration struct {
 }
 
 // var configfile = flag.String("c", "conf.json", "File di configurazione")
-var vault = flag.String("s", "10.38.105.251:9999", "Server tokenizzatore e porta") 
+var vault = flag.String("s", "10.38.105.251:9999", "Server tokenizzatore e porta")
 
+var isAllNums = regexp.MustCompile(`(?m)^\d+$`)
 
 func main() {
 
@@ -56,21 +59,38 @@ func main() {
 
 	// Crea il flag per la versione app.
 	version := flag.Bool("v", false, "Versione dell'APP")
+	author := flag.Bool("a", false, "autore e contatti per segnalazioni")
 	debug := flag.Bool("d", false, "Salva output xml su file")
 
 	// Parsa i flags
 	flag.Parse()
 
-	// Parsa i non flags e recupera la tgu come primo argomento num: 0
-	tguarg := flag.Arg(0)
+
 
 	// fmt.Println(tguarg)
+
+	if *author {
+		fmt.Println("Autore: Alberto Bregliano")
+		fmt.Println("invia segnalazioni a: alberto.bregliano@telecomitalia.it")
+
+		os.Exit(0)
+	}
 
 	// Se il flag version è settato mostra la versione ed esce.
 	if *version {
 		fmt.Printf("Ver%s\n", BuildVersion)
 		os.Exit(0)
 	}
+
+		// Parsa i non flags e recupera la tgu come primo argomento num: 0
+		tguarg := flag.Arg(0)
+
+		tguarg = strings.TrimSpace(tguarg)
+		
+		if !isAllNums.Match([]byte(tguarg)) {
+			log.Println("La tgu contiene caratteri non numerici")
+			os.Exit(1)
+		}
 
 	// verifica lunghezza tgu inserita
 	lenghthTGU := len(tguarg)

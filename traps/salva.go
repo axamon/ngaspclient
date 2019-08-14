@@ -36,20 +36,37 @@ func salvaXLSX(ctx context.Context, tgu string, fruizioni map[string]Output) err
 		fmt.Printf(err.Error())
 	}
 
-	fruizione.Cell(0, 0).Value = "TGU"
-	fruizione.Cell(0, 1).Value = tgu
-	fruizione.Cell(1, 0).Value = "Cpeid"
-	fruizione.Cell(1, 1).Value = "Mode"
-	fruizione.Cell(1, 2).Value = "Start"
-	fruizione.Cell(1, 3).Value = "End"
-	fruizione.Cell(1, 4).Value = "VideoTitle"
-	fruizione.Cell(1, 5).Value = "Buffering"
-	fruizione.Cell(1, 6).Value = "Long Buffering"
-	fruizione.Cell(1, 7).Value = "PayerErrors"
-	fruizione.Cell(1, 8).Value = "FQDN"
+	var nRow int
 
-	var nRow = 1
+	// scrive sulla riga 0 la prima
+	fruizione.Cell(nRow, 0).Value = "TGU"
+	fruizione.Cell(nRow, 1).Value = tgu
+
+	nRow++
 	var nCol int
+	// scrive sulla riga 1 la seconda
+	fruizione.Cell(nRow, nCol).Value = "Cpeid"
+	nCol++
+	fruizione.Cell(nRow, nCol).Value = "Mode"
+	nCol++
+	fruizione.Cell(nRow, nCol).Value = "ModelName"
+	nCol++
+	fruizione.Cell(nRow, nCol).Value = "Start"
+	nCol++
+	fruizione.Cell(nRow, nCol).Value = "End"
+	nCol++
+	fruizione.Cell(nRow, nCol).Value = "VideoTitle"
+	nCol++
+	fruizione.Cell(nRow, nCol).Value = "Buffering"
+	nCol++
+	fruizione.Cell(nRow, nCol).Value = "Long Buffering"
+	nCol++
+	fruizione.Cell(nRow, nCol).Value = "PayerErrors"
+	nCol++
+	fruizione.Cell(nRow, nCol).Value = "FQDN"
+	nCol++
+	fruizione.Cell(nRow, nCol).Value = "NetworkType"
+
 	// cicla su fruizioni per chiave hash
 	for _, key := range chiaviFruizioni {
 
@@ -58,7 +75,9 @@ func salvaXLSX(ctx context.Context, tgu string, fruizioni map[string]Output) err
 			continue
 		}
 
+		// ricomincia a scrivere dalla prima colonna 0
 		nCol = 0
+		// passa a una riga sotto
 		nRow++
 
 		//row := fruizione.AddRow()
@@ -67,6 +86,8 @@ func salvaXLSX(ctx context.Context, tgu string, fruizioni map[string]Output) err
 		fruizione.Cell(nRow, nCol).Value = fruizioni[key].CpeID
 		nCol++
 		fruizione.Cell(nRow, nCol).Value = fruizioni[key].Mode
+		nCol++
+		fruizione.Cell(nRow, nCol).Value = fruizioni[key].ModelName
 		nCol++
 		fruizione.Cell(nRow, nCol).Value = fruizioni[key].StartTS
 		nCol++
@@ -81,6 +102,8 @@ func salvaXLSX(ctx context.Context, tgu string, fruizioni map[string]Output) err
 		fruizione.Cell(nRow, nCol).SetInt(fruizioni[key].PlayerError)
 		nCol++
 		fruizione.Cell(nRow, nCol).Value = fruizioni[key].FQDN
+		nCol++
+		fruizione.Cell(nRow, nCol).Value = fruizioni[key].NetworkType
 
 	}
 
