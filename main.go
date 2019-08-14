@@ -45,12 +45,9 @@ type Configuration struct {
 	Token string `json:"token"`
 }
 
-// var tgu = flag.String("t", "", "TGU da controllare")
-
 // var configfile = flag.String("c", "conf.json", "File di configurazione")
-var vault = flag.String("s", "10.38.105.251:9999", "Server tokenizzatore e porta")
+var vault = flag.String("s", "10.38.105.251:9999", "Server tokenizzatore e porta") 
 
-// var configuration Configuration
 
 func main() {
 
@@ -59,6 +56,7 @@ func main() {
 
 	// Crea il flag per la versione app.
 	version := flag.Bool("v", false, "Versione dell'APP")
+	debug := flag.Bool("d", false, "Salva output xml su file")
 
 	// Parsa i flags
 	flag.Parse()
@@ -121,7 +119,6 @@ func main() {
 	// Endpoint da contattare
 	url := "https://ngasp-ag.tim.it/live/nbi_interfaces/soap/document_literal"
 
-
 	// trasforma il payload in bytes.
 	body := []byte(busta2)
 
@@ -153,12 +150,15 @@ func main() {
 		log.Printf("ERROR Impossibile leggere body reqest: %s\n", err.Error())
 	}
 
-	// salva il tutto su un file di appoggio
-	// err = ioutil.WriteFile("test.xml", responsBody, 0666)
-	// if err != nil {
-	// 	log.Fatal(err)
-	// }
-	// fmt.Println(string(responsBody)) // Debug
+	if *debug {
+		// salva il tutto su un file di appoggio
+		fmt.Println("Debug attivo")
+		err = ioutil.WriteFile("debug_"+tguarg+".xml", responsBody, 0666)
+		if err != nil {
+			log.Fatal(err)
+		}
+		fmt.Println(string(responsBody)) // Debug
+	}
 
 	// Avvia elavorazione traps
 	traps.Parse(ctx, responsBody, tguarg)

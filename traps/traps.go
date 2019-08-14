@@ -326,7 +326,7 @@ func Parse(ctx context.Context, response []byte, tgu string) {
 	// }
 
 	// Avvia il salvataggio su file delle fruizioni.
-	salvaXLSX(ctx, fruizioni)
+	salvaXLSX(ctx, tgu, fruizioni)
 	return
 }
 

@@ -3,11 +3,12 @@ package traps
 import (
 	"context"
 	"fmt"
+	"sort"
 
 	"github.com/tealeg/xlsx"
 )
 
-func salvaXLSX(ctx context.Context, fruizioni map[string]Output) error {
+func salvaXLSX(ctx context.Context, tgu string, fruizioni map[string]Output) error {
 
 	// file xlsx dove salvare i risultati
 	var file *xlsx.File
@@ -23,23 +24,29 @@ func salvaXLSX(ctx context.Context, fruizioni map[string]Output) error {
 		chiaviFruizioni = append(chiaviFruizioni, key)
 	}
 
+	// Ordina la slice alfabeticamente per avere export consistenti e non
+	// randomici come accadrebbe senza sort.
+	sort.Strings(chiaviFruizioni)
+
 	// fmt.Println(len(fruizioni))
 	// fmt.Println(fruizioni)
 
-	tgu, err := file.AddSheet("Fruizioni")
+	fruizione, err := file.AddSheet("Fruzioni_" + tgu)
 	if err != nil {
 		fmt.Printf(err.Error())
 	}
 
-	tgu.Cell(1, 0).Value = "Cpeid"
-	tgu.Cell(1, 1).Value = "Mode"
-	tgu.Cell(1, 2).Value = "Start"
-	tgu.Cell(1, 3).Value = "End"
-	tgu.Cell(1, 4).Value = "VideoTitle"
-	tgu.Cell(1, 5).Value = "Buffering"
-	tgu.Cell(1, 6).Value = "Long Buffering"
-	tgu.Cell(1, 7).Value = "PayerErrors"
-	tgu.Cell(1, 8).Value = "FQDN"
+	fruizione.Cell(0, 0).Value = "TGU"
+	fruizione.Cell(0, 1).Value = tgu
+	fruizione.Cell(1, 0).Value = "Cpeid"
+	fruizione.Cell(1, 1).Value = "Mode"
+	fruizione.Cell(1, 2).Value = "Start"
+	fruizione.Cell(1, 3).Value = "End"
+	fruizione.Cell(1, 4).Value = "VideoTitle"
+	fruizione.Cell(1, 5).Value = "Buffering"
+	fruizione.Cell(1, 6).Value = "Long Buffering"
+	fruizione.Cell(1, 7).Value = "PayerErrors"
+	fruizione.Cell(1, 8).Value = "FQDN"
 
 	var nRow = 1
 	var nCol int
@@ -54,60 +61,33 @@ func salvaXLSX(ctx context.Context, fruizioni map[string]Output) error {
 		nCol = 0
 		nRow++
 
-		//row := tgu.AddRow()
+		//row := fruizione.AddRow()
 		//row.AddCell()
 
-		tgu.Cell(nRow, nCol).Value = fruizioni[key].CpeID
+		fruizione.Cell(nRow, nCol).Value = fruizioni[key].CpeID
 		nCol++
-		tgu.Cell(nRow, nCol).Value = fruizioni[key].Mode
+		fruizione.Cell(nRow, nCol).Value = fruizioni[key].Mode
 		nCol++
-		tgu.Cell(nRow, nCol).Value = fruizioni[key].StartTS
+		fruizione.Cell(nRow, nCol).Value = fruizioni[key].StartTS
 		nCol++
-		tgu.Cell(nRow, nCol).Value = fruizioni[key].EndTS
+		fruizione.Cell(nRow, nCol).Value = fruizioni[key].EndTS
 		nCol++
-		tgu.Cell(nRow, nCol).Value = fruizioni[key].VideoTitle
+		fruizione.Cell(nRow, nCol).Value = fruizioni[key].VideoTitle
 		nCol++
-		tgu.Cell(nRow, nCol).SetInt(fruizioni[key].Buffering)
+		fruizione.Cell(nRow, nCol).SetInt(fruizioni[key].Buffering)
 		nCol++
-		tgu.Cell(nRow, nCol).SetInt(fruizioni[key].LongBuffering)
+		fruizione.Cell(nRow, nCol).SetInt(fruizioni[key].LongBuffering)
 		nCol++
-		tgu.Cell(nRow, nCol).SetInt(fruizioni[key].PlayerError)
+		fruizione.Cell(nRow, nCol).SetInt(fruizioni[key].PlayerError)
 		nCol++
-		tgu.Cell(nRow, nCol).Value = fruizioni[key].FQDN
+		fruizione.Cell(nRow, nCol).Value = fruizioni[key].FQDN
 
 	}
-	err = file.Save("test.xlsx")
+
+	err = file.Save("fruizioni_" + tgu + ".xlsx")
 	if err != nil {
 		fmt.Printf(err.Error())
 
 	}
 	return err
-}
-
-func poppo() {
-	var file *xlsx.File
-	// var sheet *xlsx.Sheet
-	// var row *xlsx.Row
-	// var cell *xlsx.Cell
-	var err error
-
-	file = xlsx.NewFile()
-	tgu, err := file.AddSheet("TGU")
-	if err != nil {
-		fmt.Printf(err.Error())
-	}
-	cpeid, err := file.AddSheet("cpeid")
-	if err != nil {
-		fmt.Printf(err.Error())
-	}
-	//row = tgu.AddRow()
-	//cell = row.AddCell()
-	tgu.Cell(1, 2).Value = "daje"
-	tgu.Cell(2, 2).Value = "dajedaje"
-	cpeid.Cell(2, 2).Value = "dajedaje"
-	//cell.Value = "I am a cell!"
-	err = file.Save("pippo.xlsx")
-	if err != nil {
-		fmt.Printf(err.Error())
-	}
 }
