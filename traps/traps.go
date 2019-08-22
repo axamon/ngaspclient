@@ -36,6 +36,7 @@ import (
 	"strings"
 )
 
+// file del timestamp di roma embeddado in base64
 const rome = "VFppZjIAAAAAAAAAAAAAAAAAAAAAAAAHAAAABwAAAAAAAACsAAAABwAAAA2AAAAAmzj4cJvVzOCcxcvwnbcAYJ6J/nCfoBzgoGCl8KF+rWCiXDdwo0waYMhsNfDM50sQzakXkM6CdODOokMQz5I0EM/jxuDQbl6Q0XIWENJM0vDTPjGQ1EnSENUd93DWKZfw1uuAkNgJlhD5M7Xw+dnE4Psc0nD7ubTw/Py0cP2ZlvD+5dDw/4KzcADFsvABYpVwApxacANCd3AEhXbwBSuT8AZuk3AHC3XwCEU68AjrV/AKLldwCss58AwOOXAMqxvwDeTg8A6K/fAPzf1wEHQacBGt33ASU/xwEs6X8BNNRBAUM/qQFSPrkBYT3JAXA82QF/O+kBjjr5AZ06CQGsORkBu8vRAcrK4QHZyfEB6MkBAffIEQIGxyECFcYxAiTFQQIzxFECQsNhAlHCcQJgwYECcFQ5An9TSQKOUlkCnVFpAqxQeQK7T4kCyk6ZAtlNqQLoTLkC90vJAwZK2QMV3ZEDJytBAzPbsQNFKWEDUdnRA2MngQNv1/EDgblJA43WEQOft2kDq9QxA721iQPKZfkD27OpA+hkGQP5sckEBmI5BBhDkQQkYFkENkGxBEJeeQRUP9EEYFyZBHI98QR+7mEEkDwRBJzsgQSuOjEEuuqhBMzL+QTY6MEE6soZBPbm4QUIyDkFFXipBSbGWQUzdskFRMR5BVF06QViwpkFb3MJBYFUYQWNcSkFn1KBBatvSQW9UKEFygERBdtOwQXn/zEF+UzhBgX9UQYX3qkGI/txBjXcyQZB+ZEGU9rpBmCLWQZx2QkGfol5Bo/XKQach5kGrdVJBrqFuQbMZxEG2IPZBuplMQb2gfkHCGNRBxUTwQcmYXEHMxHhB0RfkQdREAEHYvFZB28OIQeA73kHjQxBB57tmQerCmEHvOu5B8mcKQfa6dkH55pJB/jn+QAgECAQIBAgECAQIBAwQBAwQBAwECBAMEAwQDBAIEAwQDBAMEAwQDBAMEAwQDBAMEAwQDBAMEAwIFBgUGBQYFBgUGBQYFBgUGBQYFBgUGBQYFBgUGBQYFBgUGBQYFBgUGBQYFBgUGBQYFBgUGBQYFBgUGBQYFBgUGBQYFBgUGBQYFBgUGBQYFBgUGBQYFBgUGBQYFBgUGBQYFBgUGBQYFBgUGBQYFBgUGBQYFBgAAC7QAAAAAHCABBAAADhAACQAADhAACQAAHCABBAAAHCABBAAADhAACUxNVABDRVNUAENFVAAAAAABAQEBAAAAAAABAQpDRVQtMUNFU1QsTTMuNS4wLE0xMC41LjAvMwo="
 
 // XMLResponse è la trasposizione in struct della struttura XML di risposta.
@@ -97,6 +98,13 @@ type Output struct {
 	TGU           string
 	FQDN          string
 }
+
+type TrapRAW struct {
+	Indici []string
+	Traps  []string
+}
+
+var raw = make([]TrapRAW, 0)
 
 // Parse parsa le trap di risposta dell'API
 func Parse(ctx context.Context, response []byte, tgu string) {
@@ -173,6 +181,7 @@ func Parse(ctx context.Context, response []byte, tgu string) {
 
 	var fruizioni = make(map[string]Output)
 
+
 	var archivio []string
 	var indiceVideoTitle, indiceEventName, indiceNetworkType, indiceEventType, indiceProvider, indiceVideoURL, indiceStreamingType int
 	var fieldsSlice []string
@@ -188,6 +197,7 @@ func Parse(ctx context.Context, response []byte, tgu string) {
 
 			// elimina il tag iniziale
 			trap := strings.ReplaceAll(line, "<item>", "")
+			// TODO: @Nahum gestire eventuale tag di chiusura
 			// fmt.Println(trap)
 
 			// Metti trap in archivio
@@ -213,6 +223,12 @@ func Parse(ctx context.Context, response []byte, tgu string) {
 			indiceVideoURL = trovaIndice(fieldsSlice, "trap.body.videoUrl")
 			indiceStreamingType = trovaIndice(fieldsSlice, "trap.body.streamingType")
 
+			t := new(TrapRAW)
+			t.Indici = fieldsSlice
+			t.Traps = archivio
+
+			raw = append(raw, *t)
+
 			// aggiungere altri se servono
 
 			// Tratto le traps
@@ -235,9 +251,11 @@ func Parse(ctx context.Context, response []byte, tgu string) {
 				// Creo hash per archiaviare le fruizioni
 				hash := md5.New()
 				// Come valori per l'hash aggiungo cpeid e videotitle
-				hash.Write([]byte(trapSlice[1] + trapSlice[2] + trapSlice[indiceVideoTitle]))
+				hash.Write([]byte(trapSlice[1] + trapSlice[2] + trapSlice[indiceVideoTitle])) // magari togliere il secondo
 				// nomehash è l'has in versione esadecimale
 				nomehash := fmt.Sprintf("%x", hash.Sum(nil))
+
+				// TODO: @Nahum implementare gestione inizio e fine fruizione
 
 				// Se l'hash esiste già recupera il valore val dalla mappa
 				// e lo assegna ad out.
@@ -295,6 +313,7 @@ func Parse(ctx context.Context, response []byte, tgu string) {
 				case "buffering":
 					out.Buffering++
 
+					//TODO: gestire longbuffering
 				case "playerError":
 					out.PlayerError++
 				}
@@ -308,6 +327,7 @@ func Parse(ctx context.Context, response []byte, tgu string) {
 			// si può ripulire l'archivio e i nomi campi
 			// per prepararli a un nuovo ciclo.
 			// Le trap elaborate sono archiviate in fruizioni.
+
 			archivio = []string{}
 			fieldsSlice = []string{}
 		}
@@ -339,7 +359,7 @@ func Parse(ctx context.Context, response []byte, tgu string) {
 	// }
 
 	// Avvia il salvataggio su file delle fruizioni.
-	salvaXLSX(ctx, tgu, fruizioni)
+	salvaXLSX(ctx, tgu, fruizioni, raw) // TODO: gestire errore
 	return
 }
 

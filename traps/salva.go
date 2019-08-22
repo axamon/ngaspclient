@@ -4,11 +4,12 @@ import (
 	"context"
 	"fmt"
 	"sort"
+	"strings"
 
 	"github.com/tealeg/xlsx"
 )
 
-func salvaXLSX(ctx context.Context, tgu string, fruizioni map[string]Output) error {
+func salvaXLSX(ctx context.Context, tgu string, fruizioni map[string]Output, trapsRAW []TrapRAW) error {
 
 	// file xlsx dove salvare i risultati
 	var file *xlsx.File
@@ -107,6 +108,61 @@ func salvaXLSX(ctx context.Context, tgu string, fruizioni map[string]Output) err
 
 	}
 
+	/*
+		GESTIONE DELLE TRAP
+
+	*/
+
+	// for k,v := range raw {
+	// 	fmt.Println(k,v)
+	// }
+
+	// Creo un nuovo sheet dove mettere le trap
+	traps, err := file.AddSheet("Trap_" + tgu)
+	if err != nil {
+		fmt.Printf(err.Error())
+	}
+
+	var ntRow int
+
+	// scrive sulla riga 0 la prima
+	traps.Cell(ntRow, 0).Value = "TGU"
+	traps.Cell(ntRow, 1).Value = tgu
+
+	ntRow++
+	for n, v := range trapsRAW {
+		if n == 0 {
+			var ntCol int
+			for _, value := range v.Indici {
+				// scrive sulla riga 1 la seconda
+				if strings.Contains(value, ">") {
+					value = strings.Replace(value, "<traps_fields>", "", 1)
+					value = strings.Replace(value, "</traps_fields>", "", 1)
+				}
+				traps.Cell(1, ntCol).Value = value
+				ntCol++
+			}
+		}
+		ntRow++
+	}
+
+	for _, v := range trapsRAW {
+		ntRow = 2
+		for _, value := range v.Traps {
+			var ntCol int
+			values := strings.Split(value, ",")
+			if len(values) < 2 {
+				continue
+			}
+			for i := 0; i < len(values); i++ {
+				traps.Cell(ntRow, ntCol).Value = values[i]
+				ntCol++
+			}
+			ntRow++
+		}
+	}
+
+	// Salva il tutto su file
 	err = file.Save("fruizioni_" + tgu + ".xlsx")
 	if err != nil {
 		fmt.Printf(err.Error())

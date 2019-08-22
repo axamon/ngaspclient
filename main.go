@@ -43,9 +43,9 @@ import (
 var BuildVersion string
 
 // Configuration contiene gli elemnti per configurare il tool.
-type Configuration struct {
-	Token string `json:"token"`
-}
+// type Configuration struct {
+// 	Token string `json:"token"`
+// }
 
 // var configfile = flag.String("c", "conf.json", "File di configurazione")
 var vault = flag.String("s", "10.38.105.251:9999", "Server tokenizzatore e porta")
@@ -145,7 +145,7 @@ func main() {
 	// soap action è un header per comunicare quale API interrogare.
 	soapAction := `"urn:getTimVisionTraps"`
 
-	// Crea la richista http
+	// Crea la richiesta http
 	req, err := http.NewRequest("POST", url, bytes.NewBuffer(body))
 	if err != nil {
 		log.Printf("ERROR Impossibile creare richiesta: %s\n", err.Error())
