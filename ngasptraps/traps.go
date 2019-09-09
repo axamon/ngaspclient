@@ -2,7 +2,6 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-
 package ngasptraps
 
 import (
@@ -84,6 +83,7 @@ type Output struct {
 	FQDN          string
 }
 
+// TrapRAW è la lista di trap con i suoi indici.
 type TrapRAW struct {
 	Indici []string
 	Traps  []string
@@ -165,7 +165,6 @@ func Parse(ctx context.Context, response []byte, tgu string) {
 	*/
 
 	var fruizioni = make(map[string]Output)
-
 
 	var archivio []string
 	var indiceVideoTitle, indiceEventName, indiceNetworkType, indiceEventType, indiceProvider, indiceVideoURL, indiceStreamingType int
@@ -271,7 +270,7 @@ func Parse(ctx context.Context, response []byte, tgu string) {
 				if err != nil {
 					log.Println("impossibile decodificare roma")
 				}
-				// location, err := tizzy.LoadLocationValue("Europe/Rome")
+
 				location, err := time.LoadLocationFromTZData("Europe/Rome", romebytes)
 				if err != nil {
 					log.Println("errore con la location per i fusiorari")
