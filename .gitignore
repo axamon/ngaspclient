@@ -1,2 +1,6 @@
 *.xml
 traps/result.xml
+*.xlsx
+test.xlsx
+*.exe
+*.zip

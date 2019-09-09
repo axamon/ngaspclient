@@ -18,19 +18,26 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 // IN THE SOFTWARE.
 
-
 package traps
 
 import (
-	"context"
+	"bufio"
+	"bytes"
 	"crypto/md5"
+	"log"
+	"net/url"
+	"time"
+
+	"context"
+	"encoding/base64"
 	"encoding/xml"
 	"fmt"
-	"log"
-	"strconv"
+
 	"strings"
-	"time"
 )
+
+// file del timestamp di roma embeddado in base64
+const rome = "VFppZjIAAAAAAAAAAAAAAAAAAAAAAAAHAAAABwAAAAAAAACsAAAABwAAAA2AAAAAmzj4cJvVzOCcxcvwnbcAYJ6J/nCfoBzgoGCl8KF+rWCiXDdwo0waYMhsNfDM50sQzakXkM6CdODOokMQz5I0EM/jxuDQbl6Q0XIWENJM0vDTPjGQ1EnSENUd93DWKZfw1uuAkNgJlhD5M7Xw+dnE4Psc0nD7ubTw/Py0cP2ZlvD+5dDw/4KzcADFsvABYpVwApxacANCd3AEhXbwBSuT8AZuk3AHC3XwCEU68AjrV/AKLldwCss58AwOOXAMqxvwDeTg8A6K/fAPzf1wEHQacBGt33ASU/xwEs6X8BNNRBAUM/qQFSPrkBYT3JAXA82QF/O+kBjjr5AZ06CQGsORkBu8vRAcrK4QHZyfEB6MkBAffIEQIGxyECFcYxAiTFQQIzxFECQsNhAlHCcQJgwYECcFQ5An9TSQKOUlkCnVFpAqxQeQK7T4kCyk6ZAtlNqQLoTLkC90vJAwZK2QMV3ZEDJytBAzPbsQNFKWEDUdnRA2MngQNv1/EDgblJA43WEQOft2kDq9QxA721iQPKZfkD27OpA+hkGQP5sckEBmI5BBhDkQQkYFkENkGxBEJeeQRUP9EEYFyZBHI98QR+7mEEkDwRBJzsgQSuOjEEuuqhBMzL+QTY6MEE6soZBPbm4QUIyDkFFXipBSbGWQUzdskFRMR5BVF06QViwpkFb3MJBYFUYQWNcSkFn1KBBatvSQW9UKEFygERBdtOwQXn/zEF+UzhBgX9UQYX3qkGI/txBjXcyQZB+ZEGU9rpBmCLWQZx2QkGfol5Bo/XKQach5kGrdVJBrqFuQbMZxEG2IPZBuplMQb2gfkHCGNRBxUTwQcmYXEHMxHhB0RfkQdREAEHYvFZB28OIQeA73kHjQxBB57tmQerCmEHvOu5B8mcKQfa6dkH55pJB/jn+QAgECAQIBAgECAQIBAwQBAwQBAwECBAMEAwQDBAIEAwQDBAMEAwQDBAMEAwQDBAMEAwQDBAMEAwIFBgUGBQYFBgUGBQYFBgUGBQYFBgUGBQYFBgUGBQYFBgUGBQYFBgUGBQYFBgUGBQYFBgUGBQYFBgUGBQYFBgUGBQYFBgUGBQYFBgUGBQYFBgUGBQYFBgUGBQYFBgUGBQYFBgUGBQYFBgUGBQYFBgUGBQYFBgAAC7QAAAAAHCABBAAADhAACQAADhAACQAAHCABBAAAHCABBAAADhAACUxNVABDRVNUAENFVAAAAAABAQEBAAAAAAABAQpDRVQtMUNFU1QsTTMuNS4wLE0xMC41LjAvMwo="
 
 // XMLResponse è la trasposizione in struct della struttura XML di risposta.
 type XMLResponse struct {
@@ -76,6 +83,7 @@ type XMLResponse struct {
 type Output struct {
 	CpeID         string
 	Mode          string
+	ModelName     string
 	StartTS       string
 	EndTS         string
 	ChiusoDa      string
@@ -91,8 +99,15 @@ type Output struct {
 	FQDN          string
 }
 
+type TrapRAW struct {
+	Indici []string
+	Traps  []string
+}
+
+var raw = make([]TrapRAW, 0)
+
 // Parse parsa le trap di risposta dell'API
-func Parse(ctx context.Context, response []byte) {
+func Parse(ctx context.Context, response []byte, tgu string) {
 
 	// file, err := os.Open("result.xml")
 	// if err != nil {
@@ -104,17 +119,18 @@ func Parse(ctx context.Context, response []byte) {
 	// 	log.Fatal(err.Error())
 	// }
 
-	var elementi XMLResponse
-	errxml := xml.Unmarshal(response, &elementi)
-	if errxml != nil {
-		log.Fatal(errxml.Error())
-	}
+	// var elementi XMLResponse
+	// errxml := xml.Unmarshal(response, &elementi)
+	// if errxml != nil {
+	// 	log.Fatal(errxml.Error())
+	// }
 
 	// fields := elementi.Body.GetTimVisionTrapsResponseResponse.Return.DeviceRows.Item.TrapsFields
 	// fieldsSlice := strings.Split(fields, ",")
 	// for n, field := range fieldsSlice {
 	// 	fmt.Println(n, field)
 	// }
+	// time.Sleep(5*time.Second)
 	/*
 	   0 creation_time
 	   1 deviceId
@@ -163,80 +179,203 @@ func Parse(ctx context.Context, response []byte) {
 
 	*/
 
-	// cpeid := elementi.Body.GetTimVisionTrapsResponseResponse.Return.DeviceRows.Item.Cpeid
-	traps := elementi.Body.GetTimVisionTrapsResponseResponse.Return.DeviceRows.Item.Traps.Item
-
-	location, err := time.LoadLocation("Europe/Rome")
-	if err != nil {
-		panic(err)
-	}
-
 	var fruizioni = make(map[string]Output)
 
-	var out Output
-	for _, trap := range traps {
 
-		trapSlice := strings.Split(trap, ",")
-		fmt.Println(trapSlice) // Debug
+	var archivio []string
+	var indiceVideoTitle, indiceEventName, indiceNetworkType, indiceEventType, indiceProvider, indiceVideoURL, indiceStreamingType int
+	var fieldsSlice []string
 
-		// Creo hash per archiaviare le fruizioni
-		hash := md5.New()
-		// Come valori per l'hash aggiungo cpeid ip e videotitle
-		hash.Write([]byte(trapSlice[1] + trapSlice[5] + trapSlice[33]))
-		nomehash := fmt.Sprintf("%x", hash.Sum(nil))
+	scanner := bufio.NewScanner(bytes.NewReader(response))
+	for scanner.Scan() {
+		line := scanner.Text()
+		// fmt.Println(line) // debug
 
-		out.CpeID = trapSlice[1]
-		out.Mode = trapSlice[3]
-		out.VideoTitle = trapSlice[33]
-		out.NetworkType = trapSlice[39]
-		starTS, err := time.Parse("2006/01/02_15:04:05", trapSlice[6])
-		if err != nil {
-			log.Println(err.Error())
+		// Se la linea è di tipo item
+		// la mette in archivio
+		if strings.HasPrefix(line, "<item>") {
+
+			// elimina il tag iniziale
+			trap := strings.ReplaceAll(line, "<item>", "")
+			// TODO: @Nahum gestire eventuale tag di chiusura
+			// fmt.Println(trap)
+
+			// Metti trap in archivio
+			archivio = append(archivio, trap)
+			// for n, v := range archivio {
+			// 	fmt.Println(n, v)
+			// }
+
 		}
-		out.StartTS = starTS.In(location).Format("2006-01-02T15:04:05-0700")
-		if trapSlice[18] == "STOP" {
-			endTS, err := time.Parse("2006/01/02_15:04:05", trapSlice[6])
-			if err != nil {
-				log.Println(err.Error())
+
+		// Se la linea è di tipo traps_fields
+		// bisogna elaborare i nomi campi e le traps raccolte
+		// finora in archivio salvando gli elaborati in fruzioni.
+		if strings.HasPrefix(line, "<traps_fields>") {
+			fieldsSlice = strings.Split(line, ",")
+
+			// Trovo numero campo associato a quelli di interesse
+			indiceVideoTitle = trovaIndice(fieldsSlice, "trap.body.videoTitle")
+			indiceEventName = trovaIndice(fieldsSlice, "trap.body.eventName")
+			indiceNetworkType = trovaIndice(fieldsSlice, "trap.networkType")
+			indiceEventType = trovaIndice(fieldsSlice, "trap.eventType")
+			indiceProvider = trovaIndice(fieldsSlice, "provider")
+			indiceVideoURL = trovaIndice(fieldsSlice, "trap.body.videoUrl")
+			indiceStreamingType = trovaIndice(fieldsSlice, "trap.body.streamingType")
+
+			t := new(TrapRAW)
+			t.Indici = fieldsSlice
+			t.Traps = archivio
+
+			raw = append(raw, *t)
+
+			// aggiungere altri se servono
+
+			// Tratto le traps
+			for _, trap := range archivio {
+
+				// Crea un Out vuoto nuovo per ogni trap
+				var out Output
+
+				// Splitta la trap nei suoi elementi creando una slice
+				trapSlice := strings.Split(trap, ",")
+				// for n, v := range trapSlice {
+				// 	fmt.Println(n, v)
+				// }
+
+				//Salta le trap vuote
+				if len(trapSlice) < 2 {
+					continue
+				}
+
+				// Creo hash per archiaviare le fruizioni
+				hash := md5.New()
+				// Come valori per l'hash aggiungo cpeid e videotitle
+				hash.Write([]byte(trapSlice[1] + trapSlice[2] + trapSlice[indiceVideoTitle])) // magari togliere il secondo
+				// nomehash è l'has in versione esadecimale
+				nomehash := fmt.Sprintf("%x", hash.Sum(nil))
+
+				// TODO: @Nahum implementare gestione inizio e fine fruizione
+
+				// Se l'hash esiste già recupera il valore val dalla mappa
+				// e lo assegna ad out.
+				if val, ok := fruizioni[nomehash]; ok {
+					out = val
+				}
+
+				out.CpeID = trapSlice[1]
+				out.Mode = trapSlice[3]
+				out.ModelName = trapSlice[4]
+				out.VideoTitle = trapSlice[indiceVideoTitle]
+				out.NetworkType = trapSlice[indiceNetworkType]
+				out.IsAlice = trapSlice[indiceProvider]
+				out.TGU = tgu
+				out.StreamingType = trapSlice[indiceStreamingType]
+
+				// elabora il campo url
+				u, err := url.Parse(trapSlice[indiceVideoURL])
+				if err != nil {
+					log.Println(err)
+				}
+
+				out.FQDN = u.Hostname()
+
+				// Trova la location per trattare correttamente il passaggio
+				// del fuso orario da UTC e per gestire l'ora solare/legale.
+				romebytes, err := base64.StdEncoding.DecodeString(rome)
+				if err != nil {
+					log.Println("impossibile decodificare roma")
+				}
+				// location, err := tizzy.LoadLocationValue("Europe/Rome")
+				location, err := time.LoadLocationFromTZData("Europe/Rome", romebytes)
+				if err != nil {
+					log.Println("errore con la location per i fusiorari")
+				}
+
+				// Elabora Inzio e fine fruizione
+				switch trapSlice[indiceEventName] {
+				case "PLAY":
+					starTS, err := time.Parse("2006-01-02T15:04:05Z", trapSlice[0])
+					if err != nil {
+						log.Println(err.Error())
+					}
+					out.StartTS = starTS.In(location).Format("2006-01-02T15:04:05-0700")
+				case "STOP":
+					endTS, err := time.Parse("2006-01-02T15:04:05Z", trapSlice[0])
+					if err != nil {
+						log.Println(err.Error())
+					}
+					out.EndTS = endTS.In(location).Format("2006-01-02T15:04:05-0700")
+				}
+
+				// Conto buffering ed errori
+				switch trapSlice[indiceEventType] {
+				case "buffering":
+					out.Buffering++
+
+					//TODO: gestire longbuffering
+				case "playerError":
+					out.PlayerError++
+				}
+
+				// Salva out modificato nella mappa fruizioni
+				fruizioni[nomehash] = out
+
 			}
-			out.EndTS = endTS.In(location).Format("2006-01-02T15:04:05-0700")
+
+			// Finita l'elaborazione delle trap in archivio
+			// si può ripulire l'archivio e i nomi campi
+			// per prepararli a un nuovo ciclo.
+			// Le trap elaborate sono archiviate in fruizioni.
+
+			archivio = []string{}
+			fieldsSlice = []string{}
 		}
-
-		switch trapSlice[18] {
-		case "buffering":
-			out.Buffering++
-
-		case "playerError":
-			out.PlayerError++
-		}
-
-		if trapSlice[10] != "" {
-			v, err := strconv.Atoi(trapSlice[10])
-			if err != nil {
-				log.Printf("ERROR Impossibile estrarre tempo di buffering: %s", err.Error())
-			}
-			out.LongBuffering = out.LongBuffering + v
-		}
-
-		fruizioni[nomehash] = out
-
-		fmt.Println(starTS, out.StartTS)
-		fmt.Println(out)
+		// Riprende il ciclo iniziale alla ricerca di altre
+		// linee con tag iniziale <item>
 	}
 
+	// Costruisce una lista delle chiavi hash della mappa fruizioni.
 	chiaviFruizioni := make([]string, 0, len(fruizioni))
 	for key := range fruizioni {
 		chiaviFruizioni = append(chiaviFruizioni, key)
 	}
 
-	fmt.Println(len(fruizioni))
+	// fmt.Println(len(fruizioni))
+	// fmt.Println(fruizioni)
 
 	for _, key := range chiaviFruizioni {
+
+		// Non mostra le fruizioni senza titolo
+		if fruizioni[key].VideoTitle == "" {
+			continue
+		}
 		fmt.Println(fruizioni[key])
 
 	}
 
+	// for _, e := range archivio {
+	// 	fmt.Println(e)
+	// }
+
+	// Avvia il salvataggio su file delle fruizioni.
+	salvaXLSX(ctx, tgu, fruizioni, raw) // TODO: gestire errore
 	return
+}
+
+func trovaIndice(slice []string, item string) int {
+	// fmt.Println(slice, item)
+	// time.Sleep(3 * time.Second)
+	var indice int
+	for n, s := range slice {
+		// fmt.Println(n, s, item)
+		// time.Sleep(3 * time.Second)
+		if s == item {
+			indice = n
+		}
+	}
+
+	return indice
 }
 
 // 0633429477
