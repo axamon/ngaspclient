@@ -4,3 +4,5 @@ traps/result.xml
 test.xlsx
 *.exe
 *.zip
+timetable/*.*
+timetable

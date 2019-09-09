@@ -1,22 +1,6 @@
-// Copyright (c) 2019 Alberto Bregliano
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to
-// deal in the Software without restriction, including without limitation
-// the rights to use, copy, modify, merge, publish, distribute, sublicense,
-// and/or sell copies of the Software, and to permit persons to whom the
-// Software is furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included
-// in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-// FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
-// IN THE SOFTWARE.
+// Copyright 2019 Alberto Bregliano. All rights reserved.
+// Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
 
 package main
 
@@ -29,13 +13,15 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/axamon/ngasp/traps"
+	"github.com/axamon/ngaspclient/ngasptraps"
 
 	"crypto/tls"
 	"io/ioutil"
 	"log"
 	"net/http"
 )
+
+const endpointNGASPAPI = "https://ngasp-ag.tim.it/live/nbi_interfaces/soap/document_literal"
 
 // BuildVersion è la versione attuale del tool
 // valorizzato tramite:
@@ -65,10 +51,7 @@ func main() {
 	// Parsa i flags
 	flag.Parse()
 
-
-
-	// fmt.Println(tguarg)
-
+	// Se il flag author è settato mostra l'autore ed esce.
 	if *author {
 		fmt.Println("Autore: Alberto Bregliano")
 		fmt.Println("invia segnalazioni a: alberto.bregliano@telecomitalia.it")
@@ -82,15 +65,17 @@ func main() {
 		os.Exit(0)
 	}
 
-		// Parsa i non flags e recupera la tgu come primo argomento num: 0
-		tguarg := flag.Arg(0)
+	// Parsa i NON flags e recupera la tgu come primo argomento num: 0
+	tguarg := flag.Arg(0)
 
-		tguarg = strings.TrimSpace(tguarg)
-		
-		if !isAllNums.Match([]byte(tguarg)) {
-			log.Println("La tgu contiene caratteri non numerici")
-			os.Exit(1)
-		}
+	// Ripulisce la tgu da eventuali spazi alla fine ed inizio.
+	tguarg = strings.TrimSpace(tguarg)
+
+	// Se la tgu passata non contiene solo numeri esce con errore.
+	if !isAllNums.Match([]byte(tguarg)) {
+		log.Println("La tgu contiene caratteri non numerici")
+		os.Exit(1)
+	}
 
 	// verifica lunghezza tgu inserita
 	lenghthTGU := len(tguarg)
@@ -108,8 +93,6 @@ func main() {
 		os.Exit(1)
 	default:
 	}
-
-	// fmt.Println(tguarg) // debug
 
 	// Verifica che esista un token valido
 	err := verificatoken(ctx, *vault)
@@ -137,7 +120,7 @@ func main() {
 	client := &http.Client{Transport: transCfg}
 
 	// Endpoint da contattare
-	url := "https://ngasp-ag.tim.it/live/nbi_interfaces/soap/document_literal"
+	url := endpointNGASPAPI
 
 	// trasforma il payload in bytes.
 	body := []byte(busta2)
@@ -161,6 +144,7 @@ func main() {
 	if err != nil {
 		log.Printf("ERROR Impossibile inviare richiesta http: %s\n", err.Error())
 	}
+
 	// chiude il resp.Body come da specifica
 	defer resp.Body.Close()
 
@@ -170,6 +154,7 @@ func main() {
 		log.Printf("ERROR Impossibile leggere body reqest: %s\n", err.Error())
 	}
 
+	// Se il flag debug è settato salva output dell' API su file xml.
 	if *debug {
 		// salva il tutto su un file di appoggio
 		fmt.Println("Debug attivo")
@@ -181,6 +166,6 @@ func main() {
 	}
 
 	// Avvia elavorazione traps
-	traps.Parse(ctx, responsBody, tguarg)
+	ngasptraps.Parse(ctx, responsBody, tguarg)
 
 }
